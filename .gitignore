@@ -1,0 +1,12 @@
+
+# Common folders to ignore
+.gradle/
+.idea/
+build/
+
+
+*.class
+*.jar
+
+# Avoid ignoring Gradle wrapper jar file
+!gradle-wrapper.jar
