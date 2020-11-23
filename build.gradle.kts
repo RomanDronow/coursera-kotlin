@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation(kotlin("test-junit5"))
+    implementation("junit:junit:4.12")
 }
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "11"
