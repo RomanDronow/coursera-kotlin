@@ -1,4 +1,4 @@
-package mastermind
+package week1.mastermind
 
 import kotlin.random.Random
 
