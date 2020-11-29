@@ -1,4 +1,4 @@
-package week1.identifier
+package week2.identifier
 
 import org.junit.Test
 import org.junit.Assert.assertTrue

@@ -1,4 +1,4 @@
-package week1.identifier
+package week2.identifier
 
 fun isValidIdentifier(s: String): Boolean {
     if(s == "") return false

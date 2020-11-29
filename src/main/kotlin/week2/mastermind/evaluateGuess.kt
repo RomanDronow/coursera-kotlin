@@ -1,4 +1,4 @@
-package week1.mastermind
+package week2.mastermind
 
 data class Evaluation(val rightPosition: Int, val wrongPosition: Int)
 
