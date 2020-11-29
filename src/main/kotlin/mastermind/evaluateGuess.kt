@@ -19,7 +19,7 @@ private fun countRightPosition(secret: String, guess: String): Int {
     return rightPosition
 }
 
-fun countWrongPosition(secret: String, guess: String): Int {
+private fun countWrongPosition(secret: String, guess: String): Int {
     var wrongPosition = 0
 
     val onlyWrongSecret = mutableListOf<Char>()
