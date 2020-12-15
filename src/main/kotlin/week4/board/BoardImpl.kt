@@ -6,7 +6,7 @@ import board.Direction.*
 import board.GameBoard
 import board.SquareBoard
 
-class SquareBoardImpl(override val width: Int) : SquareBoard {
+open class SquareBoardImpl(final override val width: Int) : SquareBoard {
     private val cells = mutableSetOf<Cell>()
 
     init {
@@ -65,6 +65,48 @@ class SquareBoardImpl(override val width: Int) : SquareBoard {
     }
 }
 
+class GameBoardImpl<T>(width: Int) : GameBoard<T>, SquareBoardImpl(width) {
+    private val cellsMap = mutableMapOf<Cell, T?>()
+
+    init {
+        for (cell in getAllCells()) {
+            cellsMap[cell] = null
+        }
+    }
+
+    override fun get(cell: Cell): T? {
+        return cellsMap[cell]
+    }
+
+    override fun set(cell: Cell, value: T?) {
+        cellsMap[cell] = value
+    }
+
+    override fun filter(predicate: (T?) -> Boolean): Collection<Cell> {
+        val values = cellsMap.filterValues(predicate)
+        return values.keys
+    }
+
+    override fun find(predicate: (T?) -> Boolean): Cell? {
+        val filtered = filter(predicate)
+        if (filtered.isEmpty()) return null
+        return filtered.first()
+    }
+
+    override fun any(predicate: (T?) -> Boolean): Boolean {
+        val filtered = filter(predicate)
+        if (filtered.isNotEmpty()) return true
+        return false
+    }
+
+    override fun all(predicate: (T?) -> Boolean): Boolean {
+        val filtered = filter(predicate)
+        if (filtered.size == cellsMap.size) return true
+        return false
+    }
+
+}
+
 fun createSquareBoard(width: Int): SquareBoard = SquareBoardImpl(width)
-fun <T> createGameBoard(width: Int): GameBoard<T> = TODO()
+fun <T> createGameBoard(width: Int): GameBoard<T> = GameBoardImpl<T>(width)
 
